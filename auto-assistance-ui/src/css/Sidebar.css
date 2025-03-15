@@ -1,0 +1,86 @@
+/* src/App.css */
+
+/* 侧边栏样式 */
+.sidebar {
+    width: 200px;
+    background-color:#11264B;  /* 深蓝色背景 */
+    color: white;
+    height: 100vh;
+    padding-top: 20px;
+    position: fixed;
+    top: 40px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.sidebar.closed {
+    width: 0;
+}
+
+.sidebar-content {
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+/* 一级菜单样式 */
+.sidebar h3 {
+    cursor: pointer;
+    font-size: 18px;
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color:#071328;  /* 为一级菜单添加蓝色背景 */
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.sidebar h3:hover {
+    background-color: #1d4ed8;  /* 更深的蓝色 */
+}
+
+/* 二级菜单样式 */
+ul {
+    list-style: none;
+    padding-left: 20px;
+}
+
+ul li {
+    padding: 10px 0;
+}
+
+ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+ul li a:hover {
+    color: #1d4ed8;  /* 链接悬停时变为浅蓝色 */
+}
+
+/* 内容区域样式 */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar.open {
+    width: 250px;
+}
+
+.sidebar.closed {
+    width: 0;
+    transition: width 0.3s ease;
+}
+
+.navbar {
+    background-color: #1e3a8a;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

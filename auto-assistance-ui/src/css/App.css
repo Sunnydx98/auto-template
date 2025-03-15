@@ -1,0 +1,21 @@
+/* src/App.css */
+.app-container {
+    display: flex;
+    height: 100vh;
+    margin-top: 60px; /* 为了不让内容遮挡住导航栏 */
+}
+
+.sidebar {
+    transition: transform 0.3s ease;
+}
+
+.content {
+    margin-left: 250px; /* 当侧边栏展开时 */
+    padding: 20px;
+    flex-grow: 1;
+    box-sizing: border-box;
+}
+
+.sidebar.closed ~ .content {
+    margin-left: 0; /* 收起侧边栏时，内容区域移到最左 */
+}

@@ -1,0 +1,261 @@
+/* 页面布局 */
+.file-upload-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+.input-container {
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.results-container {
+    width: 50%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* 输入框样式 */
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.input-group input,
+.input-group select {
+    width: calc(100% - 20px); /* 让输入框不贴边 */
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 提示符样式 */
+.required {
+    color: red;
+    margin-left: 5px;  /* 在 * 号和提示之间添加适当的空隙 */
+    cursor: pointer;
+}
+
+.tooltip {
+    visibility: hidden;
+    position: absolute;
+    top: -25px; /* 提示框浮在 * 号上方 */
+    left: 24%;  /* 靠近 * 号 */
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: normal; /* 允许换行 */
+    word-wrap: break-word; /* 超过边界时换行 */
+    z-index: 9999; /* 提高 z-index 使其显示在顶部 */
+    opacity: 0;
+    transition: opacity 0.3s;
+    max-width: 250px; /* 设定最大宽度，避免提示框太宽 */
+}
+
+.input-group:hover .tooltip {
+    visibility: visible;
+    opacity: 1; /* 显示时逐渐变为不透明 */
+}
+
+
+/* 环境选择的下拉框 */
+.env-group {
+    margin-bottom: 20px;
+}
+
+.env-select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    background-color: #f7f7f7;
+    color: #555;
+    cursor: pointer;
+}
+
+.env-select option {
+    padding: 10px;
+}
+
+/* Partition Number 和 Suggestion 按钮 */
+.partition-group {
+    display: flex;
+    align-items: center;
+}
+
+.partition-group input {
+    margin-right: 20px; /* 增加右边距，避免与按钮贴得太近 */
+}
+
+.suggestion-btn {
+    padding: 8px 15px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.suggestion-btn:hover {
+    background-color: #0056b3;
+}
+
+/* 弹窗样式 */
+.suggestion-modal {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 400px;
+}
+
+.suggestion-modal h3 {
+    margin-bottom: 15px;
+}
+
+/* 按钮样式 */
+.suggestion-btn {
+    padding: 8px 16px;
+    background:linear-gradient(to right, #4e73df, #1e3a8a);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* 提交按钮样式 */
+.submit-suggestion-btn {
+    padding: 8px 16px;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.submit-suggestion-btn:hover {
+    background-color: #218838;
+}
+
+/* 关闭按钮样式 */
+.close-suggestion-btn {
+    padding: 8px 16px;
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.close-suggestion-btn:hover {
+    background-color: #c82333;
+}
+
+/* 弹窗内输入框样式 */
+.suggestion-modal input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border:brown;
+}
+
+.suggestion-btn:hover {
+    background: #0056b3;
+}
+
+
+/* 上传按钮 */
+.upload-btn {
+    width: 100%;
+    padding: 10px;
+    background: linear-gradient(to right, #4e73df, #1e3a8a);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.upload-btn:hover {
+    background-color: #45a049;
+}
+
+/* HQL 语句展示 */
+.hql-table {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* 分页 */
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.pagination button {
+    padding: 8px 16px;
+    margin: 0 5px;
+    background-color: #ddd;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.pagination button.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination button:hover {
+    background-color: #45a049;
+}
+
+/* 下载按钮 */
+.download-btn-container {
+    display: flex;
+    justify-content: space-between; /* 按钮之间的间隔 */
+    gap: 20px; /* 设置按钮之间的间距 */
+    margin-top: 20px;
+}
+
+.download-btn {
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.download-btn:hover {
+    background-color: #0056b3;
+}
