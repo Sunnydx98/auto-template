@@ -5,6 +5,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -19,7 +20,7 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 public class FileUploadController {
 
-    @PostMapping("/parse")
+    @PostMapping("/parseHive")
     public ResponseEntity<?> parseFile(@RequestParam("file") MultipartFile file,
                                        @RequestParam("sheetName") String sheetName,
                                        @RequestParam("partitionNum") String partitionNum,
@@ -52,29 +53,26 @@ public class FileUploadController {
 
     @GetMapping("/download")
     public ResponseEntity<?> downloadHqlFile(@RequestParam("fileName") String fileName,
-                                             @RequestParam("hqlStatements") List<String> hqlStatements) throws IOException {
-
+                                             @RequestParam MultiValueMap<String, String> params) {
         try {
-            // 解码 URL 参数
-            List<String> decodedHqlStatements = new ArrayList<>();
-            for (String hql : hqlStatements) {
-                decodedHqlStatements.add(URLDecoder.decode(hql, StandardCharsets.UTF_8));
+            // 解析 HQL 语句
+            List<String> hqlStatements = params.get("hqlStatements");
+            if (hqlStatements == null || hqlStatements.isEmpty()) {
+                return ResponseEntity.badRequest().body("HQL Statements are missing.");
             }
 
-            // 打印出来看看解码后的内容
-            System.out.println("File Name: " + fileName);
-            System.out.println("Decoded HQL Statements: " + decodedHqlStatements);
-
-            // 创建一个 TXT 文件并将 HQL 语句写入其中
+            // 创建一个临时文件
             File tempFile = File.createTempFile(fileName, ".txt");
             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile));
             for (String hql : hqlStatements) {
                 writer.write(hql);
                 writer.newLine();
             }
-            // 返回文件
-            return ResponseEntity.ok().
-                    header("Content-Disposition", "attachment; filename=" + fileName + ".txt")
+            writer.close();
+
+            // 返回下载文件
+            return ResponseEntity.ok()
+                    .header("Content-Disposition", "attachment; filename=" + fileName + ".txt")
                     .body(new FileSystemResource(tempFile));
 
         } catch (Exception e) {

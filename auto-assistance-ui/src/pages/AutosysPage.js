@@ -1,11 +1,11 @@
 // src/components/AutosysPage.js
 import React from 'react';
+import AutosysGenerator from "../component/AutosysGenerator";
 
 const AutosysPage = () => {
     return (
-        <div>
-            <h1>Autosys Page</h1>
-            <p>This is the Autosys page.</p>
+        <div className="page-container">
+            <AutosysGenerator />
         </div>
     );
 };

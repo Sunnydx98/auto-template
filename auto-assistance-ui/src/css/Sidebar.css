@@ -13,9 +13,7 @@
     transition: width 0.3s ease;
 }
 
-.sidebar.closed {
-    width: 0;
-}
+
 
 .sidebar-content {
     margin-left: 20px;
@@ -71,16 +69,7 @@ ul li a:hover {
     width: 250px;
 }
 
-.sidebar.closed {
-    width: 0;
-    transition: width 0.3s ease;
-}
 
-.navbar {
-    background-color: #1e3a8a;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.sidebar.collapsed {
+    display: none;
 }

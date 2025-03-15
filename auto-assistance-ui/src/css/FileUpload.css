@@ -237,25 +237,131 @@
     background-color: #45a049;
 }
 
-/* 下载按钮 */
+/* 下载按钮容器 */
 .download-btn-container {
     display: flex;
-    justify-content: space-between; /* 按钮之间的间隔 */
-    gap: 20px; /* 设置按钮之间的间距 */
+    justify-content: center;
+    gap: 15px; /* 让多个按钮之间保持间距 */
     margin-top: 20px;
 }
 
+/* 下载按钮样式 */
 .download-btn {
-    padding: 10px 20px;
-    background-color: #007BFF;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: bold;
     color: white;
     border: none;
+    border-radius: 8px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #4e73df, #1e3a8a); /* 现代感渐变 */
+    box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.15); /* 轻微阴影增加质感 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px; /* 让图标和文字之间有间距 */
 }
 
+/* 鼠标悬停时的效果 */
 .download-btn:hover {
-    background-color: #0056b3;
+    background: linear-gradient(135deg, #3b5fc3, #172b69);
+    box-shadow: 3px 6px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05); /* 轻微放大，增加交互感 */
 }
+
+/* 鼠标按下时的效果 */
+.download-btn:active {
+    transform: scale(0.98);
+    box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* 添加一个下载图标 */
+.download-btn::before {
+    content: "📥"; /* 这里可以换成 FontAwesome 图标 */
+    font-size: 18px;
+}
+
+
+/* OraasGenerator 组件的专属样式 */
+.oraas-generator-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* 保持和 FileUpload 统一的输入框、按钮样式 */
+.oraas-generator-container .input-container {
+    width: 45%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.oraas-generator-container .results-container {
+    width: 50%;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+}
+
+/* 统一输入框样式 */
+.oraas-generator-container .input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.oraas-generator-container .input-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.oraas-generator-container .input-group input,
+.oraas-generator-container .input-group select {
+    width: calc(100% - 20px);
+    padding: 10px;
+    margin-left: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+/* 统一按钮样式 */
+.oraas-generator-container .button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.oraas-generator-container .upload-btn {
+    width: 48%;
+    padding: 10px;
+    background: linear-gradient(to right, #4e73df, #1e3a8a);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.oraas-generator-container .upload-btn:hover {
+    background-color: #45a049;
+}
+
+
+/* 统一 HQL 代码展示 */
+.oraas-generator-container .hql-table {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+

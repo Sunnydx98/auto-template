@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../css/FileUpload.css'; // 引入新的CSS样式
 
-function FileUpload() {
+function HiveGenerator() {
     const [sheetName, setSheetName] = useState('');
     const [partitionNum, setPartitionNum] = useState('');
     const [file, setFile] = useState(null);
@@ -32,7 +32,7 @@ function FileUpload() {
         formData.append('loadName', loadName);
 
         try {
-            const response = await axios.post('http://localhost:8080/upload/parse', formData, {
+            const response = await axios.post('http://localhost:8080/upload/parseHive', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
@@ -49,23 +49,30 @@ function FileUpload() {
 
     const downloadHql = async (fileName, hqlStatements) => {
         try {
-            const response = await axios.get('http://localhost:8080/upload/download', {
-                params: {
-                    fileName: fileName,
-                    hqlStatements: hqlStatements,
-                },
+            // 使用 URL 编码处理参数
+            const params = new URLSearchParams();
+            params.append("fileName", fileName);
+            hqlStatements.forEach(hql => {
+                params.append("hqlStatements", hql);
+            });
+
+            const response = await axios.get(`http://localhost:8080/upload/download?${params.toString()}`, {
                 responseType: 'blob',
             });
 
-            // Download the file
+            // 创建下载链接
             const link = document.createElement('a');
             link.href = URL.createObjectURL(response.data);
             link.download = `${fileName}.txt`;
+            document.body.appendChild(link);
             link.click();
+            document.body.removeChild(link);
         } catch (error) {
             console.error('Error downloading file:', error);
         }
     };
+
+
 
     const renderPagination = () => {
         const totalPages = responseData?.totalPages || 0;
@@ -122,7 +129,7 @@ function FileUpload() {
     return (
         <div className="file-upload-container">
             <div className="input-container">
-                <h2>File Upload</h2>
+                <h2>Hive Generator</h2>
 
                 {/* 环境选择（放在第一个位置） */}
                 <div className="input-group env-group">
@@ -277,4 +284,4 @@ function FileUpload() {
     );
 }
 
-export default FileUpload;
+export default HiveGenerator;

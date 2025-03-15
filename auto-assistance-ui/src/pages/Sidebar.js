@@ -21,8 +21,7 @@ const Sidebar = () => {
             <h3>QA</h3>
         </div>
 
-)
-    ;
+    );
 };
 
 export default Sidebar;

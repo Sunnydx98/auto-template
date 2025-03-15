@@ -1,11 +1,10 @@
-// src/components/OraasPage.js
-import React from 'react';
+import React from "react";
+import OraasGenerate from "../component/OraasGenerator";
 
 const OraasPage = () => {
     return (
-        <div>
-            <h1>Oraas Page</h1>
-            <p>This is the Oraas page.</p>
+        <div className="page-container">
+            <OraasGenerate />
         </div>
     );
 };

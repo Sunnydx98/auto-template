@@ -3,19 +3,28 @@
     display: flex;
     height: 100vh;
     margin-top: 60px; /* 为了不让内容遮挡住导航栏 */
+    overflow: hidden;
 }
 
+/* 默认侧边栏展开时 */
 .sidebar {
-    transition: transform 0.3s ease;
+    width: 250px;  /* 默认宽度 */
+    transition: width 0.3s;
 }
 
-.content {
-    margin-left: 250px; /* 当侧边栏展开时 */
-    padding: 20px;
-    flex-grow: 1;
-    box-sizing: border-box;
+.main-content {
+    flex-grow: 1; /* 让 main-content 自动填充剩余空间 */
+    margin-left: 250px;  /* 和 Sidebar 对齐 */
+    transition: margin-left 0.3s ease-in-out;
 }
 
-.sidebar.closed ~ .content {
-    margin-left: 0; /* 收起侧边栏时，内容区域移到最左 */
+/* 侧边栏收起时 */
+.sidebar.collapsed {
+    width: 0;  /* 彻底隐藏 */
+    overflow: hidden;
+}
+
+.sidebar.collapsed + .main-content {
+    margin-left: 0;  /* 让 Main Content 贴边 */
+    width: 100%; /* 确保内容区域铺满 */
 }
