@@ -74,16 +74,15 @@ function HiveGenerator() {
 
 
 
-    const renderPagination = () => {
-        const totalPages = responseData?.totalPages || 0;
-        const pageNumbers = [];
-        for (let i = 1; i <= totalPages; i++) {
-            pageNumbers.push(i);
-        }
+    const renderPagination = (hqlStatements) => {
+        if (!hqlStatements || hqlStatements.length === 0) return null;
+
+        const totalPages = Math.ceil(hqlStatements.length / pageSize);
+        if (totalPages <= 1) return null; // 只有1页时不显示分页
 
         return (
             <div className="pagination">
-                {pageNumbers.map((page) => (
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
                     <button
                         key={page}
                         onClick={() => handlePageChange(page)}
@@ -97,6 +96,10 @@ function HiveGenerator() {
     };
 
     const renderHqlTable = (hqlStatements) => {
+        if (!hqlStatements || hqlStatements.length === 0) {
+            return <p>No HQL statements available.</p>;
+        }
+
         const startIndex = (currentPage - 1) * pageSize;
         const currentPageData = hqlStatements.slice(startIndex, startIndex + pageSize);
 
@@ -105,9 +108,11 @@ function HiveGenerator() {
                 {currentPageData.map((hql, index) => (
                     <pre key={index}>{hql}</pre>
                 ))}
+                {renderPagination(hqlStatements)}
             </div>
         );
     };
+
 
     const handleShowSuggestionModal = () => {
         setShowSuggestionModal(true);
